@@ -1,7 +1,7 @@
 {
-  "name": "openclaw-studio",
+  "name": "desk",
   "version": "0.1.0",
-  "description": "AI-powered desktop IDE for OpenClaw",
+  "description": "AI-powered desktop environment for OpenClaw",
   "type": "module",
   "scripts": {
     "dev": "vite",

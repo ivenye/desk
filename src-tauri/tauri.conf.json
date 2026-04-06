@@ -7,7 +7,7 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "OpenClaw Studio",
+    "productName": "Desk",
     "version": "0.1.0"
   },
   "tauri": {

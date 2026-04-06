@@ -1,6 +1,6 @@
-# OpenClaw Studio
+# Desk
 
-AI-powered desktop IDE combining Claude Code architecture with OpenClaw capabilities.
+AI-powered desktop environment combining Claude Code architecture with OpenClaw capabilities.
 
 ## Features
 
