@@ -19,5 +19,15 @@ export default defineConfig({
     target: ['es2021', 'chrome100', 'safari13'],
     minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
     sourcemap: !!process.env.TAURI_DEBUG,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+          'ui-vendor': ['lucide-react', 'clsx', 'tailwind-merge'],
+          'query-vendor': ['@tanstack/react-query', 'zustand'],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 1000,
   },
 })

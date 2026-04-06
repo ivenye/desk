@@ -13,9 +13,28 @@ export function validateUrl(url: string): boolean {
 }
 
 export function validateFilePath(path: string): boolean {
-  return path.length > 0 && !path.includes('..')
+  if (!path || path.length === 0) return false
+
+  // Normalize path separators
+  const normalized = path.replace(/\\/g, '/')
+
+  // Block path traversal attempts
+  if (normalized.includes('..') || normalized.includes('./')) return false
+
+  // Block absolute paths outside allowed directories
+  if (normalized.startsWith('/') || /^[a-zA-Z]:/.test(normalized)) return false
+
+  // Block special characters that could be dangerous
+  if (/[<>:"|?*\x00-\x1f]/.test(normalized)) return false
+
+  return true
 }
 
 export function sanitizeInput(input: string): string {
-  return input.replace(/[<>]/g, '')
+  // Remove HTML tags and dangerous characters
+  return input
+    .replace(/[<>]/g, '')
+    .replace(/javascript:/gi, '')
+    .replace(/on\w+=/gi, '')
+    .trim()
 }

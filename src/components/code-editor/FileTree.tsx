@@ -31,7 +31,9 @@ const mockFileTree: FileNode[] = [
   { name: 'README.md', path: '/README.md', type: 'file' },
 ]
 
-function TreeNode({ node }: { node: FileNode }) {
+import { memo } from 'react'
+
+const TreeNode = memo(({ node }: { node: FileNode }) => {
   const [isOpen, setIsOpen] = useState(false)
   const { openFile } = useEditorStore()
 
@@ -68,7 +70,7 @@ function TreeNode({ node }: { node: FileNode }) {
       )}
     </div>
   )
-}
+})
 
 export function FileTree() {
   return (

@@ -6,7 +6,6 @@
 
 - Node.js 18+ and npm
 - Rust 1.77+ and Cargo
-- OpenClaw installed and running
 
 ### Installation
 

@@ -16,7 +16,9 @@ export const useTerminalStore = create<TerminalState>((set) => ({
   isExecuting: false,
   
   addToHistory: (line) => set((state) => ({
-    history: [...state.history, line],
+    history: state.history.length > 1000
+      ? [...state.history.slice(-900), line]
+      : [...state.history, line],
   })),
   
   setCurrentCommand: (cmd) => set({ currentCommand: cmd }),

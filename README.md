@@ -1,6 +1,6 @@
 # Desk
 
-AI-powered desktop environment combining Claude Code architecture with OpenClaw capabilities.
+AI-powered desktop environment with code editor, terminal, and agent management.
 
 ## Features
 
@@ -21,7 +21,7 @@ AI-powered desktop environment combining Claude Code architecture with OpenClaw 
 
 **Backend:**
 - Tauri 2.0 (Rust)
-- OpenClaw API integration
+- Standalone desktop application
 
 ## Quick Start
 
@@ -29,7 +29,6 @@ AI-powered desktop environment combining Claude Code architecture with OpenClaw 
 
 - Node.js 18+
 - Rust 1.77+
-- OpenClaw installed and running
 
 ### Installation
 

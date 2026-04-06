@@ -1,21 +1,24 @@
 import { useState } from 'react'
-import { Plus, Loader2 } from 'lucide-react'
+import { Plus, Loader2, AlertCircle } from 'lucide-react'
 import { useSpawnAgent } from '@/hooks/useOpenClaw'
 
 export function AgentPanel() {
   const [isCreating, setIsCreating] = useState(false)
   const [newTask, setNewTask] = useState('')
+  const [error, setError] = useState<string | null>(null)
   const spawnAgent = useSpawnAgent()
 
   const handleCreateAgent = async () => {
     if (!newTask.trim()) return
-    
+
+    setError(null)
     try {
       await spawnAgent.mutateAsync(newTask)
       setNewTask('')
       setIsCreating(false)
     } catch (error) {
-      console.error('Failed to spawn agent:', error)
+      const errorMsg = error instanceof Error ? error.message : 'Failed to spawn agent'
+      setError(errorMsg)
     }
   }
 
@@ -35,6 +38,12 @@ export function AgentPanel() {
       {isCreating && (
         <div className="mb-4 p-4 border border-border rounded-lg bg-card">
           <h3 className="font-semibold mb-2">Create New Agent</h3>
+          {error && (
+            <div className="mb-2 p-2 bg-red-500/10 border border-red-500/20 rounded flex items-center gap-2 text-red-500">
+              <AlertCircle className="w-4 h-4" />
+              <span className="text-sm">{error}</span>
+            </div>
+          )}
           <textarea
             value={newTask}
             onChange={(e) => setNewTask(e.target.value)}
@@ -54,7 +63,10 @@ export function AgentPanel() {
               )}
             </button>
             <button
-              onClick={() => setIsCreating(false)}
+              onClick={() => {
+                setIsCreating(false)
+                setError(null)
+              }}
               className="px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/90"
             >
               Cancel

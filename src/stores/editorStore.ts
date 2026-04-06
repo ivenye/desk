@@ -31,7 +31,10 @@ export const useEditorStore = create<EditorState>((set) => ({
   
   setActiveFile: (path) => set({ activeFile: path }),
   
-  updateFileContent: (path, content) => set((state) => ({
-    fileContents: { ...state.fileContents, [path]: content },
-  })),
+  updateFileContent: (path, content) => set((state) => {
+    if (state.fileContents[path] === content) return state
+    return {
+      fileContents: { ...state.fileContents, [path]: content },
+    }
+  }),
 }))

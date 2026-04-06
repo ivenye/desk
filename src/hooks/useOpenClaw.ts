@@ -5,7 +5,8 @@ export function useSessions() {
   return useQuery({
     queryKey: ['sessions'],
     queryFn: () => OpenClawAPI.listSessions(),
-    refetchInterval: 5000, // 每5秒刷新
+    refetchInterval: 30000, // 每30秒刷新，减少轮询频率
+    staleTime: 10000, // 10秒内数据视为新鲜
   })
 }
 

@@ -29,7 +29,8 @@ impl OpenClawClient {
     }
 
     pub async fn list_sessions(&self) -> Result<Vec<Session>, Box<dyn std::error::Error>> {
-        // TODO: Implement actual OpenClaw API call
+        // Mock implementation - returns demo data
+        // In production, this would connect to OpenClaw API
         Ok(vec![
             Session {
                 key: "agent:main:main".to_string(),
@@ -41,7 +42,8 @@ impl OpenClawClient {
     }
 
     pub async fn spawn_agent(&self, task: &str) -> Result<AgentSpawn, Box<dyn std::error::Error>> {
-        // TODO: Implement actual OpenClaw API call
+        // Mock implementation - returns demo data
+        // In production, this would connect to OpenClaw API
         Ok(AgentSpawn {
             session_key: "agent:spawned:123".to_string(),
             agent_id: "spawned".to_string(),
@@ -50,16 +52,18 @@ impl OpenClawClient {
     }
 
     pub async fn exec_command(&self, command: &str) -> Result<ExecResult, Box<dyn std::error::Error>> {
-        // TODO: Implement actual OpenClaw API call
+        // Mock implementation - returns demo data
+        // In production, this would connect to OpenClaw API or execute locally
         Ok(ExecResult {
-            stdout: format!("Executed: {}", command),
+            stdout: format!("Executed: {}\n", command),
             stderr: String::new(),
             exit_code: 0,
         })
     }
 
     pub async fn search_memory(&self, query: &str) -> Result<Vec<MemoryResult>, Box<dyn std::error::Error>> {
-        // TODO: Implement actual OpenClaw API call
+        // Mock implementation - returns demo data
+        // In production, this would connect to OpenClaw API
         Ok(vec![
             MemoryResult {
                 path: "MEMORY.md".to_string(),

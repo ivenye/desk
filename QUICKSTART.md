@@ -128,4 +128,4 @@ npm run tauri:build
 
 ---
 
-**Happy coding with OpenClaw Studio!** 🚀
+**Happy coding with Desk!** 🚀

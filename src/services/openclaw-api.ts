@@ -1,29 +1,5 @@
 import { invoke } from '@tauri-apps/api/core'
-
-export interface Session {
-  key: string
-  agent_id: string
-  label?: string
-  active: boolean
-}
-
-export interface AgentSpawn {
-  session_key: string
-  agent_id: string
-  task: string
-}
-
-export interface ExecResult {
-  stdout: string
-  stderr: string
-  exit_code: number
-}
-
-export interface MemoryResult {
-  path: string
-  content: string
-  score: number
-}
+import type { Session, AgentSpawn, ExecResult, MemoryResult } from '@/types/shared'
 
 export class OpenClawAPI {
   static async listSessions(): Promise<Session[]> {
@@ -42,3 +18,5 @@ export class OpenClawAPI {
     return await invoke('search_memory', { query })
   }
 }
+
+export type { Session, AgentSpawn, ExecResult, MemoryResult } from '@/types/shared'
