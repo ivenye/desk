@@ -20,11 +20,11 @@ class EventBus {
   }
 
   on<K extends keyof PluginEvents>(event: K, listener: PluginEvents[K]): void {
-    this.emitter.on(event, listener as any);
+    this.emitter.on(event, listener as (...args: unknown[]) => void);
   }
 
   off<K extends keyof PluginEvents>(event: K, listener: PluginEvents[K]): void {
-    this.emitter.off(event, listener as any);
+    this.emitter.off(event, listener as (...args: unknown[]) => void);
   }
 
   emit<K extends keyof PluginEvents>(
@@ -35,7 +35,7 @@ class EventBus {
   }
 
   once<K extends keyof PluginEvents>(event: K, listener: PluginEvents[K]): void {
-    this.emitter.once(event, listener as any);
+    this.emitter.once(event, listener as (...args: unknown[]) => void);
   }
 
   removeAllListeners(event?: keyof PluginEvents): void {

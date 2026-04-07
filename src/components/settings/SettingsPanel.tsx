@@ -285,7 +285,7 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
                   <label className="block text-sm font-medium mb-2">Cursor Style</label>
                   <select
                     value={config.terminal.cursorStyle}
-                    onChange={(e) => updateSection('terminal', { cursorStyle: e.target.value as any })}
+                    onChange={(e) => updateSection('terminal', { cursorStyle: e.target.value as 'block' | 'underline' | 'bar' })}
                     className="w-full px-3 py-2 bg-background border border-border rounded"
                   >
                     <option value="block">Block</option>

@@ -81,7 +81,7 @@ export class LayoutManager {
       layout.areas[area] = {
         ...layout.areas[area],
         ...updates,
-      } as any;
+      } as typeof layout.areas[typeof area];
 
       // 如果是当前布局，触发更新
       if (layoutId === this.currentLayout) {

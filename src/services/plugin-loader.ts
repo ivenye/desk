@@ -43,7 +43,7 @@ export class PluginLoader {
       // 创建插件状态
       const plugin: LoadedPlugin = {
         definition,
-        api: null as any, // 稍后设置
+        api: null!, // Will be set immediately after
         config: null,
         status: 'loading',
       };
