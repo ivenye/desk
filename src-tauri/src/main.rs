@@ -4,7 +4,7 @@
 use tauri::Manager;
 
 mod commands;
-mod openclaw;
+mod desk_client;
 mod state;
 
 use commands::*;

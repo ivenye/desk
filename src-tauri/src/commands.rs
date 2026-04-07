@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 use tauri::State;
-use crate::openclaw::OpenClawClient;
+use crate::desk_client::DeskClient;
 use crate::state::AppState;
 
 pub mod plugin_commands;
@@ -36,7 +36,7 @@ pub struct MemoryResult {
 
 #[tauri::command]
 pub async fn list_sessions(state: State<'_, AppState>) -> Result<Vec<Session>, String> {
-    let client = state.openclaw_client.lock().await;
+    let client = state.desk_client.lock().await;
     client.list_sessions().await
         .map_err(|e| e.to_string())
 }
@@ -46,7 +46,7 @@ pub async fn spawn_agent(
     state: State<'_, AppState>,
     task: String,
 ) -> Result<AgentSpawn, String> {
-    let client = state.openclaw_client.lock().await;
+    let client = state.desk_client.lock().await;
     client.spawn_agent(&task).await
         .map_err(|e| e.to_string())
 }
@@ -56,7 +56,7 @@ pub async fn exec_command(
     state: State<'_, AppState>,
     command: String,
 ) -> Result<ExecResult, String> {
-    let client = state.openclaw_client.lock().await;
+    let client = state.desk_client.lock().await;
     client.exec_command(&command).await
         .map_err(|e| e.to_string())
 }
@@ -66,7 +66,7 @@ pub async fn search_memory(
     state: State<'_, AppState>,
     query: String,
 ) -> Result<Vec<MemoryResult>, String> {
-    let client = state.openclaw_client.lock().await;
+    let client = state.desk_client.lock().await;
     client.search_memory(&query).await
         .map_err(|e| e.to_string())
 }
