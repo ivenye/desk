@@ -1,8 +1,9 @@
 import { useRef, useEffect } from 'react'
 import { Terminal as XTerm } from 'xterm'
 import { FitAddon } from 'xterm-addon-fit'
-import { useExecCommand } from '@/hooks/useOpenClaw'
+import { useExecCommand } from '@/hooks/useDesk'
 import { useTerminalStore } from '@/stores/terminalStore'
+import { useTerminalInput } from '@/hooks/useTerminalInput'
 import 'xterm/css/xterm.css'
 
 export function Terminal() {
@@ -10,7 +11,30 @@ export function Terminal() {
   const xtermRef = useRef<XTerm>()
   const fitAddonRef = useRef<FitAddon>()
   const execCommand = useExecCommand()
-  const { addToHistory, currentCommand, setCurrentCommand } = useTerminalStore()
+  const { addToHistory } = useTerminalStore()
+
+  const handleCommand = async (command: string) => {
+    const term = xtermRef.current
+    if (!term) return
+
+    try {
+      const result = await execCommand.mutateAsync(command)
+      if (result.stdout) {
+        term.write(result.stdout)
+      }
+      if (result.stderr) {
+        term.write(`\x1b[1;31m${result.stderr}\x1b[0m`)
+      }
+    } catch (error) {
+      const errorMsg = error instanceof Error ? error.message : 'Unknown error'
+      term.write(`\x1b[1;31mError: ${errorMsg}\x1b[0m\r\n`)
+    }
+  }
+
+  const { handleData } = useTerminalInput({
+    onCommand: handleCommand,
+    onAddToHistory: addToHistory,
+  })
 
   useEffect(() => {
     if (!terminalRef.current) return
@@ -50,57 +74,8 @@ export function Terminal() {
     term.writeln('Type "help" for available commands\n')
     term.write('$ ')
 
-    let currentLine = ''
-
     // Handle input
-    term.onData(async (data) => {
-      const code = data.charCodeAt(0)
-
-      // Enter key
-      if (code === 13) {
-        term.write('\r\n')
-        if (currentLine.trim()) {
-          addToHistory(`$ ${currentLine}`)
-          
-          try {
-            const result = await execCommand.mutateAsync(currentLine)
-            if (result.stdout) {
-              term.write(result.stdout)
-            }
-            if (result.stderr) {
-              term.write(`\x1b[1;31m${result.stderr}\x1b[0m`)
-            }
-          } catch (error) {
-            const errorMsg = error instanceof Error ? error.message : 'Unknown error'
-            term.write(`\x1b[1;31mError: ${errorMsg}\x1b[0m\r\n`)
-          }
-        }
-        currentLine = ''
-        term.write('$ ')
-      }
-      // Backspace
-      else if (code === 127) {
-        if (currentLine.length > 0) {
-          currentLine = currentLine.slice(0, -1)
-          term.write('\b \b')
-        }
-      }
-      // Ctrl+C
-      else if (code === 3) {
-        term.write('^C\r\n$ ')
-        currentLine = ''
-      }
-      // Ctrl+L (clear)
-      else if (code === 12) {
-        term.clear()
-        term.write('$ ')
-      }
-      // Regular character
-      else if (code >= 32 && code < 127) {
-        currentLine += data
-        term.write(data)
-      }
-    })
+    term.onData(handleData(term))
 
     // Handle resize
     const handleResize = () => {
@@ -112,7 +87,7 @@ export function Terminal() {
       window.removeEventListener('resize', handleResize)
       term.dispose()
     }
-  }, [])
+  }, [handleData])
 
   return (
     <div className="h-full w-full bg-[#1e1e1e] rounded-lg p-2">

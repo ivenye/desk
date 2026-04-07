@@ -1,8 +1,8 @@
-# OpenClaw Studio - 项目总结
+# Desk - 项目总结
 
 ## 🎉 项目已完成！
 
-**OpenClaw Studio** 是一个集成 AI 代码助手、可视化控制面板、多 Agent 协作的桌面应用，成功结合了 Claude Code 的终端 UI 架构和 OpenClaw 的强大能力。
+**Desk** 是一个集成 AI 代码助手、可视化控制面板、多 Agent 协作的桌面应用，成功结合了 Claude Code 的终端 UI 架构和 Desk 的强大能力。
 
 ---
 
@@ -26,7 +26,7 @@
 ## 🏗️ 项目结构
 
 ```
-openclaw-studio/
+desk/
 ├── 📄 文档
 │   ├── README.md              # 项目说明
 │   ├── DESIGN.md              # 架构设计 (7.6KB)
@@ -60,7 +60,7 @@ openclaw-studio/
 │       ├── src/
 │       │   ├── main.rs       # 入口
 │       │   ├── commands.rs   # Tauri 命令
-│       │   ├── openclaw/     # OpenClaw API
+│       │   ├── desk/     # Desk API
 │       │   └── state.rs      # 应用状态
 │       ├── Cargo.toml        # Rust 依赖
 │       ├── tauri.conf.json   # Tauri 配置
@@ -152,7 +152,7 @@ openclaw-studio/
 
 ### 安装依赖
 ```bash
-cd openclaw-studio
+cd desk
 npm install
 ```
 
@@ -200,7 +200,7 @@ npm run tauri:build
 ## 🎯 下一步计划
 
 ### Phase 1: 完善核心功能 (1-2 周)
-- [ ] 实现真实的 OpenClaw API 调用
+- [ ] 实现真实的 Desk API 调用
 - [ ] 完善文件系统操作
 - [ ] 添加 Git 集成
 - [ ] 实现快捷键系统
@@ -228,7 +228,7 @@ npm run tauri:build
 ## 🔧 开发建议
 
 ### 优先级排序
-1. **高优先级**: OpenClaw API 集成
+1. **高优先级**: Desk API 集成
 2. **中优先级**: 文件系统、Git 集成
 3. **低优先级**: 主题、插件系统
 
@@ -255,7 +255,7 @@ npm run tauri:build
 - [Monaco Editor](https://microsoft.github.io/monaco-editor/)
 - [xterm.js](https://xtermjs.org/)
 - [React Flow](https://reactflow.dev/)
-- [OpenClaw 文档](https://docs.openclaw.ai/)
+- [Desk 文档](https://docs.desk.ai/)
 
 ---
 
@@ -279,7 +279,7 @@ MIT License - 详见 [LICENSE](./LICENSE) 文件
 
 ## 🎊 总结
 
-**OpenClaw Studio** 是一个功能完整、架构清晰、易于扩展的桌面应用项目。
+**Desk** 是一个功能完整、架构清晰、易于扩展的桌面应用项目。
 
 ### 项目亮点
 - ✅ **完整的项目结构** - 50+ 文件，6000+ 行代码
@@ -302,4 +302,4 @@ MIT License - 详见 [LICENSE](./LICENSE) 文件
 
 ---
 
-**现在就开始使用 OpenClaw Studio，体验 AI 驱动的开发新时代！** 🚀
+**现在就开始使用 Desk，体验 AI 驱动的开发新时代！** 🚀

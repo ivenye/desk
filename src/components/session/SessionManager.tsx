@@ -1,4 +1,4 @@
-import { useSessions } from '@/hooks/useOpenClaw'
+import { useSessions } from '@/hooks/useDesk'
 import { Loader2 } from 'lucide-react'
 
 export function SessionManager() {

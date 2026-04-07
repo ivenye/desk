@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Plus, Loader2, AlertCircle } from 'lucide-react'
-import { useSpawnAgent } from '@/hooks/useOpenClaw'
+import { useSpawnAgent } from '@/hooks/useDesk'
 
 export function AgentPanel() {
   const [isCreating, setIsCreating] = useState(false)

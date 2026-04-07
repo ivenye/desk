@@ -1,5 +1,5 @@
 import { Folder, File, ChevronRight, ChevronDown } from 'lucide-react'
-import { useState } from 'react'
+import { useState, memo } from 'react'
 import { useEditorStore } from '@/stores/editorStore'
 
 interface FileNode {
@@ -30,8 +30,6 @@ const mockFileTree: FileNode[] = [
   { name: 'package.json', path: '/package.json', type: 'file' },
   { name: 'README.md', path: '/README.md', type: 'file' },
 ]
-
-import { memo } from 'react'
 
 const TreeNode = memo(({ node }: { node: FileNode }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -72,7 +70,7 @@ const TreeNode = memo(({ node }: { node: FileNode }) => {
   )
 })
 
-export function FileTree() {
+export const FileTree = memo(() => {
   return (
     <div className="w-64 border-r border-border bg-card p-2 overflow-auto">
       <h3 className="text-sm font-semibold mb-2 px-2">Explorer</h3>
@@ -81,4 +79,4 @@ export function FileTree() {
       ))}
     </div>
   )
-}
+})

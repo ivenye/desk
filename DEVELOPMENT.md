@@ -1,4 +1,4 @@
-# OpenClaw Studio - Development Guide
+# Desk - Development Guide
 
 ## Getting Started
 
@@ -11,8 +11,8 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/openclaw/openclaw-studio.git
-cd openclaw-studio
+git clone https://github.com/ivenye/desk.git
+cd desk
 
 # Install dependencies
 npm install
@@ -24,7 +24,7 @@ npm run tauri:dev
 ## Project Structure
 
 ```
-openclaw-studio/
+desk/
 ├── src/                    # React frontend
 │   ├── components/         # UI components
 │   │   ├── layout/        # Layout components
@@ -43,7 +43,7 @@ openclaw-studio/
 │   └── src/
 │       ├── main.rs        # Entry point
 │       ├── commands.rs    # Tauri commands
-│       ├── openclaw/      # OpenClaw API client
+│       ├── desk/          # Desk API client
 │       └── state.rs       # Application state
 └── public/                # Static assets
 ```
@@ -203,4 +203,3 @@ server: {
 - [React Documentation](https://react.dev/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [shadcn/ui](https://ui.shadcn.com/)
-- [OpenClaw Docs](https://docs.openclaw.ai/)

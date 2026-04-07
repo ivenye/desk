@@ -1,8 +1,8 @@
-# 🎉 OpenClaw Studio - 项目完成报告
+# 🎉 Desk - 项目完成报告
 
 ## 项目信息
 
-**项目名称**: OpenClaw Studio  
+**项目名称**: Desk  
 **版本**: 0.1.0  
 **完成日期**: 2026-04-06  
 **开发时间**: ~2 小时  
@@ -45,7 +45,7 @@
 ## 🏗️ 项目结构
 
 ```
-openclaw-studio/
+desk/
 ├── 📚 文档 (10 个)
 │   ├── README.md
 │   ├── DESIGN.md
@@ -83,7 +83,7 @@ openclaw-studio/
 │       ├── src/
 │       │   ├── main.rs
 │       │   ├── commands.rs
-│       │   ├── openclaw/mod.rs
+│       │   ├── desk/mod.rs
 │       │   └── state.rs
 │       ├── Cargo.toml
 │       ├── tauri.conf.json
@@ -196,7 +196,7 @@ openclaw-studio/
 
 ### 安装依赖
 ```bash
-cd /home/openclaw/.openclaw/workspace/openclaw-studio
+cd /home/desk/.desk/workspace/desk
 npm install
 ```
 
@@ -276,7 +276,7 @@ npm run tauri:build
 ## 📈 下一步计划
 
 ### Phase 1: 核心功能完善 (1-2 周)
-- [ ] 实现真实的 OpenClaw API 调用
+- [ ] 实现真实的 Desk API 调用
 - [ ] 完善文件系统操作
 - [ ] 添加 Git 集成
 - [ ] 实现全局快捷键
@@ -356,16 +356,16 @@ MIT License - 详见 [LICENSE](./LICENSE) 文件
 
 ## 📞 联系方式
 
-- **GitHub**: https://github.com/openclaw/openclaw-studio
+- **GitHub**: https://github.com/desk/desk
 - **Discord**: https://discord.com/invite/clawd
-- **Email**: support@openclaw.ai
-- **Website**: https://openclaw.ai
+- **Email**: support@desk.ai
+- **Website**: https://desk.ai
 
 ---
 
 ## 🎊 总结
 
-**OpenClaw Studio** 是一个功能完整、架构清晰、易于扩展的现代化桌面应用。
+**Desk** 是一个功能完整、架构清晰、易于扩展的现代化桌面应用。
 
 ### 项目成果
 ✅ **50+ 个文件** - 完整的项目结构  

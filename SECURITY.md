@@ -10,7 +10,7 @@
 
 **Please do not report security vulnerabilities through public GitHub issues.**
 
-Instead, please report them via email to: security@openclaw.ai
+Instead, please report them via email to: security@desk.ai
 
 Include:
 - Type of vulnerability
@@ -26,7 +26,7 @@ You should receive a response within 48 hours. If the issue is confirmed, we wil
 
 ## Security Best Practices
 
-When using OpenClaw Studio:
+When using Desk:
 
 1. **Keep dependencies updated**
    ```bash
@@ -55,7 +55,7 @@ When using OpenClaw Studio:
 
 - **Local file access**: App can read/write local files (by design)
 - **Command execution**: Terminal can execute system commands (sandboxed)
-- **Network requests**: Can make HTTP requests to OpenClaw API
+- **Network requests**: Can make HTTP requests to Desk API
 
 ## Security Updates
 
@@ -68,7 +68,7 @@ Subscribe to releases to stay informed:
 
 ## Acknowledgments
 
-We thank the security researchers who help keep OpenClaw Studio safe.
+We thank the security researchers who help keep Desk safe.
 
 ---
 

@@ -46,7 +46,7 @@ npm run tauri:build
 ## Project Structure
 
 ```
-openclaw-studio/
+desk/
 ├── src/                 # React frontend
 │   ├── components/      # UI components
 │   ├── hooks/          # Custom hooks

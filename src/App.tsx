@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import { AppLayout } from './components/layout/AppLayout'
 import { CodeEditor } from './components/code-editor/CodeEditor'
 import { Terminal } from './components/terminal/Terminal'
@@ -6,8 +6,15 @@ import { AgentPanel } from './components/agent/AgentPanel'
 import { SessionManager } from './components/session/SessionManager'
 import { MemoryBrowser } from './components/memory/MemoryBrowser'
 import { WorkflowEditor } from './components/workflow/WorkflowEditor'
+import { ErrorBoundary } from './components/ErrorBoundary'
 
 type View = 'editor' | 'terminal' | 'agents' | 'sessions' | 'memory' | 'workflow'
+
+const LoadingFallback = () => (
+  <div className="flex items-center justify-center h-full w-full">
+    <div className="text-muted-foreground">Loading...</div>
+  </div>
+)
 
 function App() {
   const [currentView, setCurrentView] = useState<View>('editor')
@@ -32,9 +39,15 @@ function App() {
   }
 
   return (
-    <AppLayout currentView={currentView} onViewChange={setCurrentView}>
-      {renderView()}
-    </AppLayout>
+    <ErrorBoundary>
+      <AppLayout currentView={currentView} onViewChange={setCurrentView}>
+        <ErrorBoundary>
+          <Suspense fallback={<LoadingFallback />}>
+            {renderView()}
+          </Suspense>
+        </ErrorBoundary>
+      </AppLayout>
+    </ErrorBoundary>
   )
 }
 

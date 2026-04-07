@@ -1,4 +1,4 @@
-export const OPENCLAW_API_BASE = import.meta.env.VITE_OPENCLAW_API_BASE || 'http://localhost:3000'
+export const DESK_API_BASE = import.meta.env.VITE_DESK_API_BASE || 'http://localhost:3000'
 
 export const QUERY_KEYS = {
   SESSIONS: 'sessions',

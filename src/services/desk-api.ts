@@ -1,7 +1,7 @@
 import { invoke } from '@tauri-apps/api/core'
 import type { Session, AgentSpawn, ExecResult, MemoryResult } from '@/types/shared'
 
-export class OpenClawAPI {
+export class DeskAPI {
   static async listSessions(): Promise<Session[]> {
     return await invoke('list_sessions')
   }

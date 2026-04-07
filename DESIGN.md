@@ -1,8 +1,8 @@
-# OpenClaw Studio - 设计文档
+# Desk - 设计文档
 
 ## 项目概述
 
-OpenClaw Studio 是一个集成 AI 代码助手、可视化控制面板、多 Agent 协作的桌面应用，结合了 Claude Code 的终端 UI 架构和 OpenClaw 的强大能力。
+Desk 是一个集成 AI 代码助手、可视化控制面板、多 Agent 协作的桌面应用，结合了 Claude Code 的终端 UI 架构和 Desk 的强大能力。
 
 ## 核心特性
 
@@ -63,12 +63,12 @@ reqwest 0.12+        # HTTP 客户端
 ## 项目结构
 
 ```
-openclaw-studio/
+desk/
 ├── src-tauri/                    # Rust 后端
 │   ├── src/
 │   │   ├── main.rs              # 入口
-│   │   ├── openclaw/
-│   │   │   ├── mod.rs           # OpenClaw API 封装
+│   │   ├── desk/
+│   │   │   ├── mod.rs           # Desk API 封装
 │   │   │   ├── sessions.rs      # Session 管理
 │   │   │   ├── agents.rs        # Agent 操作
 │   │   │   ├── exec.rs          # 命令执行
@@ -114,7 +114,7 @@ openclaw-studio/
 │   │       └── ...
 │   │
 │   ├── hooks/
-│   │   ├── useOpenClaw.ts       # OpenClaw API hooks
+│   │   ├── useDesk.ts       # Desk API hooks
 │   │   ├── useTerminal.ts       # 终端状态
 │   │   ├── useWorkflow.ts       # 工作流状态
 │   │   └── useWebSocket.ts      # WebSocket 连接
@@ -126,12 +126,12 @@ openclaw-studio/
 │   │   └── agentStore.ts        # Agent 状态
 │   │
 │   ├── services/
-│   │   ├── openclaw-api.ts      # OpenClaw API 客户端
+│   │   ├── desk-api.ts      # Desk API 客户端
 │   │   ├── tauri-commands.ts    # Tauri 命令封装
 │   │   └── websocket.ts         # WebSocket 客户端
 │   │
 │   ├── types/
-│   │   ├── openclaw.ts          # OpenClaw 类型定义
+│   │   ├── desk.ts          # Desk 类型定义
 │   │   ├── workflow.ts          # 工作流类型
 │   │   └── editor.ts            # 编辑器类型
 │   │
@@ -155,17 +155,17 @@ openclaw-studio/
 
 ## 核心功能实现
 
-### 1. OpenClaw API 集成
+### 1. Desk API 集成
 
 **Rust 后端封装**
 ```rust
-// src-tauri/src/openclaw/mod.rs
-pub struct OpenClawClient {
+// src-tauri/src/desk/mod.rs
+pub struct DeskClient {
     base_url: String,
     gateway_token: Option<String>,
 }
 
-impl OpenClawClient {
+impl DeskClient {
     pub async fn list_sessions(&self) -> Result<Vec<Session>>;
     pub async fn spawn_agent(&self, task: &str) -> Result<AgentSpawn>;
     pub async fn exec_command(&self, cmd: &str) -> Result<ExecResult>;
@@ -175,8 +175,8 @@ impl OpenClawClient {
 
 **TypeScript 前端调用**
 ```typescript
-// src/services/openclaw-api.ts
-export class OpenClawAPI {
+// src/services/desk-api.ts
+export class DeskAPI {
   async listSessions(): Promise<Session[]>;
   async spawnAgent(task: string): Promise<AgentSpawn>;
   async execCommand(cmd: string): Promise<ExecResult>;
@@ -236,7 +236,7 @@ export function Terminal() {
     term.open(terminalRef.current!);
     xtermRef.current = term;
     
-    // 连接到 OpenClaw exec
+    // 连接到 Desk exec
     term.onData((data) => {
       invoke('exec_command', { input: data });
     });
@@ -299,18 +299,18 @@ npm run tauri build
 
 **Windows**
 ```
-openclaw-studio-setup.exe
+desk-setup.exe
 ```
 
 **macOS**
 ```
-openclaw-studio.dmg
+desk.dmg
 ```
 
 **Linux**
 ```bash
-chmod +x openclaw-studio.AppImage
-./openclaw-studio.AppImage
+chmod +x desk.AppImage
+./desk.AppImage
 ```
 
 ## 性能优化
@@ -342,7 +342,7 @@ chmod +x openclaw-studio.AppImage
 ### Phase 1: MVP (4-6 周)
 - [x] 项目初始化
 - [ ] 基础 UI 框架
-- [ ] OpenClaw API 集成
+- [ ] Desk API 集成
 - [ ] 终端组件
 - [ ] 代码编辑器
 

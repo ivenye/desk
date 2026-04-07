@@ -17,7 +17,7 @@ cargo --version # Should be 1.77+
 ### Step 2: Clone & Install
 
 ```bash
-cd /home/openclaw/.openclaw/workspace/openclaw-studio
+cd /home/desk/.desk/workspace/desk
 npm install
 ```
 

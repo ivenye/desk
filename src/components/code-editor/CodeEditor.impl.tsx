@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react'
+import type * as Monaco from 'monaco-editor'
 import { useEditorStore } from '@/stores/editorStore'
 import { TabBar } from './TabBar'
 import { FileTree } from './FileTree'
@@ -14,13 +15,14 @@ function loadMonaco() {
 
 export function CodeEditor() {
   const editorRef = useRef<HTMLDivElement>(null)
-  const monacoRef = useRef<any>()
+  const monacoRef = useRef<Monaco.editor.IStandaloneCodeEditor>()
   const { activeFile, fileContents, updateFileContent } = useEditorStore()
+  const updateTimeoutRef = useRef<NodeJS.Timeout>()
 
   useEffect(() => {
     if (!editorRef.current) return
 
-    let editor: any
+    let editor: Monaco.editor.IStandaloneCodeEditor | undefined
     let disposed = false
 
     loadMonaco().then((monaco) => {
@@ -41,14 +43,23 @@ export function CodeEditor() {
       monacoRef.current = editor
 
       editor.onDidChangeModelContent(() => {
-        if (activeFile) {
-          updateFileContent(activeFile, editor.getValue())
+        if (activeFile && editor) {
+          // Debounce updates to avoid excessive re-renders
+          if (updateTimeoutRef.current) {
+            clearTimeout(updateTimeoutRef.current)
+          }
+          updateTimeoutRef.current = setTimeout(() => {
+            updateFileContent(activeFile, editor.getValue())
+          }, 300)
         }
       })
     })
 
     return () => {
       disposed = true
+      if (updateTimeoutRef.current) {
+        clearTimeout(updateTimeoutRef.current)
+      }
       editor?.dispose()
     }
   }, [])
@@ -56,7 +67,11 @@ export function CodeEditor() {
   useEffect(() => {
     if (monacoRef.current && activeFile) {
       const content = fileContents[activeFile] || `// ${activeFile}\n\n`
-      monacoRef.current.setValue(content)
+      const currentValue = monacoRef.current.getValue()
+      // Only update if content actually changed
+      if (currentValue !== content) {
+        monacoRef.current.setValue(content)
+      }
     }
   }, [activeFile, fileContents])
 

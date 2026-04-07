@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to OpenClaw Studio will be documented in this file.
+All notable changes to Desk will be documented in this file.
 
 ## [Unreleased]
 
@@ -33,5 +33,5 @@ All notable changes to OpenClaw Studio will be documented in this file.
 - Initial release
 - Basic project structure
 - Core components
-- OpenClaw API integration
+- Desk API integration
 - Development and build scripts

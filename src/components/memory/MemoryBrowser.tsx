@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Search, Loader2 } from 'lucide-react'
-import { useMemorySearch } from '@/hooks/useOpenClaw'
+import { useMemorySearch } from '@/hooks/useDesk'
 
 export function MemoryBrowser() {
   const [query, setQuery] = useState('')
