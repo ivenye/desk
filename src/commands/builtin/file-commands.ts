@@ -1,4 +1,4 @@
-import type { CommandDefinition, CommandResult } from '@/commands/types';
+import type { CommandDefinition } from '@/commands/types';
 
 /**
  * 文件操作命令

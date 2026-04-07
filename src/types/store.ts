@@ -91,15 +91,25 @@ export interface TerminalSlice {
  * 插件状态切片
  */
 export interface PluginSlice {
-  loaded: Map<string, any>;
+  loaded: Map<string, unknown>;
   loading: Set<string>;
   errors: Map<string, Error>;
 
   // Actions
   setPluginLoading: (pluginId: string, loading: boolean) => void;
-  setPluginLoaded: (pluginId: string, plugin: any) => void;
+  setPluginLoaded: (pluginId: string, plugin: unknown) => void;
   setPluginError: (pluginId: string, error: Error) => void;
   removePlugin: (pluginId: string) => void;
+}
+
+/**
+ * 命令历史条目
+ */
+export interface CommandHistoryEntry {
+  commandId: string;
+  timestamp: Date;
+  success: boolean;
+  error?: string;
 }
 
 /**
@@ -109,14 +119,14 @@ export interface CommandSlice {
   isPaletteOpen: boolean;
   paletteQuery: string;
   executingCommand: string | null;
-  recentCommands: any[];
+  recentCommands: CommandHistoryEntry[];
 
   // Actions
   openPalette: () => void;
   closePalette: () => void;
   setPaletteQuery: (query: string) => void;
   setExecutingCommand: (commandId: string | null) => void;
-  addRecentCommand: (entry: any) => void;
+  addRecentCommand: (entry: CommandHistoryEntry) => void;
 }
 
 /**

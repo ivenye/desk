@@ -1,5 +1,5 @@
 import type { StateCreator } from 'zustand';
-import type { CommandSlice } from '@/types/store';
+import type { CommandSlice, CommandHistoryEntry } from '@/types/store';
 
 /**
  * 命令状态切片
@@ -33,7 +33,7 @@ export const createCommandSlice: StateCreator<CommandSlice> = (set) => ({
     set({ executingCommand: commandId });
   },
 
-  addRecentCommand: (entry: any) => {
+  addRecentCommand: (entry: CommandHistoryEntry) => {
     set((state) => ({
       recentCommands: [entry, ...state.recentCommands].slice(0, 20),
     }));

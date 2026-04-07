@@ -27,7 +27,7 @@ export const createPluginSlice: StateCreator<PluginSlice> = (set) => ({
     });
   },
 
-  setPluginLoaded: (pluginId: string, plugin: any) => {
+  setPluginLoaded: (pluginId: string, plugin: unknown) => {
     console.log(`[PluginSlice] Plugin loaded: ${pluginId}`);
 
     set((state) => {
