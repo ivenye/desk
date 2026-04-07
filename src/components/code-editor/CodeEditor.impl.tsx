@@ -49,7 +49,10 @@ export function CodeEditor() {
             clearTimeout(updateTimeoutRef.current)
           }
           updateTimeoutRef.current = setTimeout(() => {
-            updateFileContent(activeFile, editor.getValue())
+            const currentEditor = editor;
+            if (currentEditor) {
+              updateFileContent(activeFile, currentEditor.getValue())
+            }
           }, 300)
         }
       })

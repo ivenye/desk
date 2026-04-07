@@ -46,7 +46,7 @@ export class LayoutManager {
     this.currentLayout = layoutId;
 
     // 触发布局更新事件
-    eventBus.emit('layout:changed', layout);
+    eventBus.emit('layout:changed', layout as unknown);
   }
 
   /**
@@ -85,7 +85,7 @@ export class LayoutManager {
 
       // 如果是当前布局，触发更新
       if (layoutId === this.currentLayout) {
-        eventBus.emit('layout:changed', layout);
+        eventBus.emit('layout:changed', layout as unknown);
       }
     }
   }

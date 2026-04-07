@@ -4,7 +4,7 @@ import type { EditorSlice, FileInfo } from '@/types/store';
 /**
  * 编辑器状态切片
  */
-export const createEditorSlice: StateCreator<EditorSlice> = (set, get) => ({
+export const createEditorSlice: StateCreator<EditorSlice> = (set) => ({
   // State
   openFiles: [],
   activeFile: null,

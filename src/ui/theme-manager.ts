@@ -79,7 +79,7 @@ export class ThemeManager {
     this.currentTheme = themeId;
 
     // 触发主题更新事件
-    eventBus.emit('theme:changed', theme);
+    eventBus.emit('theme:changed', theme as unknown);
   }
 
   /**

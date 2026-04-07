@@ -12,8 +12,8 @@ export function useConfig() {
 
   useEffect(() => {
     // 监听配置更新
-    const handleConfigUpdate = (newConfig: DeskConfig) => {
-      setConfig(newConfig);
+    const handleConfigUpdate = (newConfig: unknown) => {
+      setConfig(newConfig as DeskConfig);
     };
 
     eventBus.on('config:updated', handleConfigUpdate);
@@ -66,8 +66,8 @@ export function useConfigSection<K extends keyof DeskConfig>(section: K) {
   );
 
   useEffect(() => {
-    const handleConfigUpdate = (newConfig: DeskConfig) => {
-      setValue(newConfig[section]);
+    const handleConfigUpdate = (newConfig: unknown) => {
+      setValue((newConfig as DeskConfig)[section]);
     };
 
     eventBus.on('config:updated', handleConfigUpdate);

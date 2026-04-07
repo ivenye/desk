@@ -19,11 +19,11 @@ export const devtools = <
   const enabled = options?.enabled ?? process.env.NODE_ENV === 'development';
 
   if (!enabled) {
-    return config as StateCreator<T, Mps, [['zustand/devtools', never], ...Mcs]>;
+    return config as unknown as StateCreator<T, Mps, [['zustand/devtools', never], ...Mcs]>;
   }
 
   return zustandDevtools(config, {
     name: options?.name || 'Desk Store',
     enabled,
-  }) as StateCreator<T, Mps, [['zustand/devtools', never], ...Mcs]>;
+  }) as unknown as StateCreator<T, Mps, [['zustand/devtools', never], ...Mcs]>;
 };

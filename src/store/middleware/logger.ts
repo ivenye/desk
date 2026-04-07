@@ -13,7 +13,8 @@ export const logger = <
 ): StateCreator<T, Mps, Mcs> => {
   return (set, get, api) =>
     config(
-      (partial, replace) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ((partial: T | Partial<T> | ((state: T) => T | Partial<T>), replace?: boolean) => {
         const prevState = get();
         console.log('[Store] Previous state:', prevState);
         console.log('[Store] Action:', { partial, replace });
@@ -22,7 +23,7 @@ export const logger = <
 
         const nextState = get();
         console.log('[Store] Next state:', nextState);
-      },
+      }) as any,
       get,
       api
     );

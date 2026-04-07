@@ -60,7 +60,7 @@ export class ConfigManager {
       this.config = validated;
 
       // 触发配置更新事件
-      eventBus.emit('config:updated', validated);
+      eventBus.emit('config:updated', validated as unknown);
 
       console.log('[ConfigManager] Config saved');
     } catch (error) {

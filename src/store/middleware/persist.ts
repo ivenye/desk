@@ -1,4 +1,3 @@
-import type { StateCreator, StoreMutatorIdentifier } from 'zustand';
 import { persist as zustandPersist, createJSONStorage } from 'zustand/middleware';
 
 /**
@@ -9,7 +8,7 @@ export interface PersistConfig<T> {
   storage?: Storage;
   partialize?: (state: T) => Partial<T>;
   version?: number;
-  migrate?: (persistedState: any, version: number) => T;
+  migrate?: (persistedState: unknown, version: number) => T;
 }
 
 /**
@@ -18,11 +17,12 @@ export interface PersistConfig<T> {
  */
 export const createPersist = <T>(config: PersistConfig<T>) => {
   return zustandPersist<T>(
-    (state) => state,
+    (state) => state as T,
     {
       name: config.name,
       storage: createJSONStorage(() => config.storage || localStorage),
-      partialize: config.partialize,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      partialize: config.partialize as any,
       version: config.version || 1,
       migrate: config.migrate,
     }

@@ -1,5 +1,4 @@
 import type { z } from 'zod';
-import type EventEmitter from 'eventemitter3';
 
 /**
  * 插件类型
@@ -241,10 +240,12 @@ export interface PluginEvents {
   'plugin:error': (pluginId: string, error: Error) => void;
   'plugin:unloading': (pluginId: string) => void;
   'plugin:unloaded': (pluginId: string) => void;
-  'config:updated': (pluginId: string, config: unknown) => void;
+  'config:updated': (config: unknown) => void;
   'provider:registered': (providerId: string) => void;
   'tool:registered': (toolName: string) => void;
   'command:registered': (commandId: string) => void;
   'panel:registered': (panelId: string) => void;
   'service:registered': (serviceId: string) => void;
+  'layout:changed': (layout: unknown) => void;
+  'theme:changed': (theme: unknown) => void;
 }

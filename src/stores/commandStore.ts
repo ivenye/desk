@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { RegisteredCommand, CommandHistoryEntry, CommandResult } from '@/commands/types';
+import type { CommandHistoryEntry, CommandResult } from '@/commands/types';
 
 interface CommandState {
   // 命令面板状态

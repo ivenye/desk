@@ -44,7 +44,7 @@ export class PluginApiImpl implements DeskPluginApi {
     await configManager.save(this.pluginId, newConfig);
 
     this.logger.info('Config updated');
-    this.events.emit('config:updated', this.pluginId, newConfig);
+    this.events.emit('config:updated', newConfig as unknown);
   }
 
   registerProvider(config: ProviderConfig): void {

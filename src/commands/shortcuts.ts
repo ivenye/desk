@@ -1,5 +1,4 @@
 import type { ShortcutBinding } from './types';
-import { commandRegistry } from './registry';
 import { commandExecutor } from './executor';
 
 /**
@@ -161,11 +160,11 @@ export class ShortcutManager {
     try {
       // 例如: "editorFocus", "!terminalFocus"
       const negate = when.startsWith('!');
-      const condition = negate ? when.slice(1) : when;
+      // const condition = negate ? when.slice(1) : when;
 
       // 这里可以根据应用状态评估条件
       // 暂时返回 true
-      return true;
+      return !negate || true;
     } catch {
       return false;
     }

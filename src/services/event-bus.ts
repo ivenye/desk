@@ -31,7 +31,8 @@ class EventBus {
     event: K,
     ...args: Parameters<PluginEvents[K]>
   ): void {
-    this.emitter.emit(event, ...args);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (this.emitter.emit as any)(event, ...args);
   }
 
   once<K extends keyof PluginEvents>(event: K, listener: PluginEvents[K]): void {
