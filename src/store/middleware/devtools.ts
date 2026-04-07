@@ -10,20 +10,20 @@ export const devtools = <
   Mps extends [StoreMutatorIdentifier, unknown][] = [],
   Mcs extends [StoreMutatorIdentifier, unknown][] = []
 >(
-  config: StateCreator<T, Mps, Mcs>,
+  config: StateCreator<T, [...Mps, ['zustand/devtools', never]], Mcs>,
   options?: {
     name?: string;
     enabled?: boolean;
   }
-): StateCreator<T, Mps, Mcs> => {
+): StateCreator<T, Mps, [['zustand/devtools', never], ...Mcs]> => {
   const enabled = options?.enabled ?? process.env.NODE_ENV === 'development';
 
   if (!enabled) {
-    return config;
+    return config as StateCreator<T, Mps, [['zustand/devtools', never], ...Mcs]>;
   }
 
   return zustandDevtools(config, {
     name: options?.name || 'Desk Store',
     enabled,
-  });
+  }) as StateCreator<T, Mps, [['zustand/devtools', never], ...Mcs]>;
 };

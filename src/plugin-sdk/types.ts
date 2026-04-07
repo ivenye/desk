@@ -63,7 +63,12 @@ export interface DeskPluginApi {
   logger: PluginLogger;
 
   /** 事件总线 */
-  events: EventEmitter;
+  events: {
+    on<K extends keyof PluginEvents>(event: K, listener: PluginEvents[K]): void;
+    off<K extends keyof PluginEvents>(event: K, listener: PluginEvents[K]): void;
+    emit<K extends keyof PluginEvents>(event: K, ...args: Parameters<PluginEvents[K]>): void;
+    once<K extends keyof PluginEvents>(event: K, listener: PluginEvents[K]): void;
+  };
 
   /** 注册 Provider */
   registerProvider(config: ProviderConfig): void;
@@ -197,7 +202,11 @@ export interface ServiceDefinition {
 export interface ServiceContext {
   logger: PluginLogger;
   config: unknown;
-  events: EventEmitter;
+  events: {
+    on<K extends keyof PluginEvents>(event: K, listener: PluginEvents[K]): void;
+    off<K extends keyof PluginEvents>(event: K, listener: PluginEvents[K]): void;
+    emit<K extends keyof PluginEvents>(event: K, ...args: Parameters<PluginEvents[K]>): void;
+  };
 }
 
 /**

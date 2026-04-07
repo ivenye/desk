@@ -1,4 +1,3 @@
-import type EventEmitter from 'eventemitter3';
 import type {
   DeskPluginApi,
   PluginLogger,
@@ -7,6 +6,7 @@ import type {
   CommandDefinition,
   PanelDefinition,
   ServiceDefinition,
+  PluginEvents,
 } from './types';
 import { configManager } from '@/services/config-manager';
 
@@ -17,7 +17,12 @@ export class PluginApiImpl implements DeskPluginApi {
   constructor(
     public readonly pluginId: string,
     public readonly logger: PluginLogger,
-    public readonly events: EventEmitter,
+    public readonly events: {
+      on<K extends keyof PluginEvents>(event: K, listener: PluginEvents[K]): void;
+      off<K extends keyof PluginEvents>(event: K, listener: PluginEvents[K]): void;
+      emit<K extends keyof PluginEvents>(event: K, ...args: Parameters<PluginEvents[K]>): void;
+      once<K extends keyof PluginEvents>(event: K, listener: PluginEvents[K]): void;
+    },
     private providerRegistry: Map<string, ProviderConfig>,
     private toolRegistry: Map<string, ToolDefinition>,
     private commandRegistry: Map<string, CommandDefinition>,

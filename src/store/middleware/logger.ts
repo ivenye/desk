@@ -13,12 +13,12 @@ export const logger = <
 ): StateCreator<T, Mps, Mcs> => {
   return (set, get, api) =>
     config(
-      (...args) => {
+      (partial, replace) => {
         const prevState = get();
         console.log('[Store] Previous state:', prevState);
-        console.log('[Store] Action:', args);
+        console.log('[Store] Action:', { partial, replace });
 
-        set(...args);
+        set(partial, replace);
 
         const nextState = get();
         console.log('[Store] Next state:', nextState);

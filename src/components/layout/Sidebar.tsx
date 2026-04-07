@@ -1,12 +1,13 @@
 import { Code2, Terminal as TerminalIcon, Users, Layers, Brain, Workflow, Puzzle } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import type { View } from './AppLayout'
 
 interface SidebarProps {
-  currentView: string
-  onViewChange: (view: string) => void
+  currentView: View
+  onViewChange: (view: View) => void
 }
 
-const navItems = [
+const navItems: Array<{ id: View; icon: typeof Code2; label: string }> = [
   { id: 'editor', icon: Code2, label: 'Editor' },
   { id: 'terminal', icon: TerminalIcon, label: 'Terminal' },
   { id: 'agents', icon: Users, label: 'Agents' },

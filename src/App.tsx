@@ -1,5 +1,5 @@
 import { useState, Suspense } from 'react'
-import { AppLayout } from './components/layout/AppLayout'
+import { AppLayout, type View } from './components/layout/AppLayout'
 import { CodeEditor } from './components/code-editor/CodeEditor'
 import { Terminal } from './components/terminal/Terminal'
 import { AgentPanel } from './components/agent/AgentPanel'
@@ -10,8 +10,6 @@ import { PluginTest } from './components/plugin/PluginTest'
 import { CommandPalette } from './components/command/CommandPalette'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { useCommandSystem } from './hooks/useCommandSystem'
-
-type View = 'editor' | 'terminal' | 'agents' | 'sessions' | 'memory' | 'workflow' | 'plugins'
 
 const LoadingFallback = () => (
   <div className="flex items-center justify-center h-full w-full">

@@ -2,10 +2,12 @@ import { ReactNode } from 'react'
 import { Sidebar } from './Sidebar'
 import { Header } from './Header'
 
+export type View = 'editor' | 'terminal' | 'agents' | 'sessions' | 'memory' | 'workflow' | 'plugins'
+
 interface AppLayoutProps {
   children: ReactNode
-  currentView: string
-  onViewChange: (view: string) => void
+  currentView: View
+  onViewChange: (view: View) => void
 }
 
 export function AppLayout({ children, currentView, onViewChange }: AppLayoutProps) {
