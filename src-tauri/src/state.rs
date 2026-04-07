@@ -1,8 +1,8 @@
 use std::sync::Arc;
 use tokio::sync::Mutex;
-use crate::openclaw::OpenClawClient;
+use crate::desk_client::DeskClient;
 
 #[derive(Default)]
 pub struct AppState {
-    pub openclaw_client: Arc<Mutex<OpenClawClient>>,
+    pub desk_client: Arc<Mutex<DeskClient>>,
 }
