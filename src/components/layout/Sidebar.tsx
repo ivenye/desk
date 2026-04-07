@@ -1,4 +1,4 @@
-import { Code2, Terminal as TerminalIcon, Users, Layers, Brain, Workflow } from 'lucide-react'
+import { Code2, Terminal as TerminalIcon, Users, Layers, Brain, Workflow, Puzzle } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface SidebarProps {
@@ -13,6 +13,7 @@ const navItems = [
   { id: 'sessions', icon: Layers, label: 'Sessions' },
   { id: 'memory', icon: Brain, label: 'Memory' },
   { id: 'workflow', icon: Workflow, label: 'Workflow' },
+  { id: 'plugins', icon: Puzzle, label: 'Plugins' },
 ]
 
 export function Sidebar({ currentView, onViewChange }: SidebarProps) {

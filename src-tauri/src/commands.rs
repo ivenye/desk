@@ -3,6 +3,8 @@ use tauri::State;
 use crate::openclaw::OpenClawClient;
 use crate::state::AppState;
 
+pub mod plugin_commands;
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Session {
     pub key: String,

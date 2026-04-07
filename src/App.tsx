@@ -6,9 +6,12 @@ import { AgentPanel } from './components/agent/AgentPanel'
 import { SessionManager } from './components/session/SessionManager'
 import { MemoryBrowser } from './components/memory/MemoryBrowser'
 import { WorkflowEditor } from './components/workflow/WorkflowEditor'
+import { PluginTest } from './components/plugin/PluginTest'
+import { CommandPalette } from './components/command/CommandPalette'
 import { ErrorBoundary } from './components/ErrorBoundary'
+import { useCommandSystem } from './hooks/useCommandSystem'
 
-type View = 'editor' | 'terminal' | 'agents' | 'sessions' | 'memory' | 'workflow'
+type View = 'editor' | 'terminal' | 'agents' | 'sessions' | 'memory' | 'workflow' | 'plugins'
 
 const LoadingFallback = () => (
   <div className="flex items-center justify-center h-full w-full">
@@ -18,6 +21,9 @@ const LoadingFallback = () => (
 
 function App() {
   const [currentView, setCurrentView] = useState<View>('editor')
+
+  // 初始化命令系统
+  useCommandSystem()
 
   const renderView = () => {
     switch (currentView) {
@@ -33,6 +39,8 @@ function App() {
         return <MemoryBrowser />
       case 'workflow':
         return <WorkflowEditor />
+      case 'plugins':
+        return <PluginTest />
       default:
         return <CodeEditor />
     }
@@ -47,6 +55,9 @@ function App() {
           </Suspense>
         </ErrorBoundary>
       </AppLayout>
+
+      {/* 命令面板 */}
+      <CommandPalette />
     </ErrorBoundary>
   )
 }

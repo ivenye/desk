@@ -1,0 +1,7 @@
+{
+  "name": "@desk/example-plugin",
+  "version": "1.0.0",
+  "description": "Example plugin for Desk",
+  "main": "index.ts",
+  "type": "module"
+}

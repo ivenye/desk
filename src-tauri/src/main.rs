@@ -8,6 +8,7 @@ mod openclaw;
 mod state;
 
 use commands::*;
+use commands::plugin_commands::*;
 use state::AppState;
 
 fn main() {
@@ -18,6 +19,10 @@ fn main() {
             spawn_agent,
             exec_command,
             search_memory,
+            load_plugin_config,
+            save_plugin_config,
+            remove_plugin_config,
+            list_plugin_configs,
         ])
         .setup(|app| {
             #[cfg(debug_assertions)]
